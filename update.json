@@ -1,0 +1,23 @@
+{
+  "app": {
+     "version": "27.0",
+    "versionCode": "27000",
+    "link": "https://luckysix.cc/down.php/f224a0c62b7d949306e498c8cae5eb3e.apk",
+    "note": "https://gitlab.com/yangbyyoung/magisk_files/-/raw/master/MagiskStable/notes.md"
+  },
+  "uninstaller": {
+    "link": "https://luckysix.cc/down.php/f224a0c62b7d949306e498c8cae5eb3e.apk"
+  },
+  "magisk": {
+    "version": "27.0",
+    "versionCode": "28000",
+    "link": "https://luckysix.cc/down.php/f224a0c62b7d949306e498c8cae5eb3e.apk",
+    "note": "https://gitlab.com/yangbyyoung/magisk_files/-/raw/master/MagiskStable/notes.md"
+  },
+  "stub": {
+    "versionCode": "38",
+    "link": "https://luckysix.cc/down.php/f224a0c62b7d949306e498c8cae5eb3e.apk"
+  }
+}
+
+
